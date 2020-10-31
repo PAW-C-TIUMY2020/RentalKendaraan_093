@@ -19,13 +19,13 @@
                 @Html.DisplayNameFor(model => model.Biaya)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdCustomerNavigation)
+                @Html.DisplayNameFor(model => model.IdCustomerNavigation.NamaCustomer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdJaminanNavigation)
+                @Html.DisplayNameFor(model => model.IdJaminanNavigation.NamaJaminan)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdKendaraanNavigation)
+                @Html.DisplayNameFor(model => model.IdKendaraanNavigation.NamaKendaraan)
             </th>
             <th></th>
         </tr>
@@ -40,13 +40,13 @@
                 @Html.DisplayFor(modelItem => item.Biaya)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdCustomerNavigation.IdCustomer)
+                @Html.DisplayFor(modelItem => item.IdCustomerNavigation.NamaCustomer)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdJaminanNavigation.IdJaminan)
+                @Html.DisplayFor(modelItem => item.IdJaminanNavigation.NamaJaminan)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdKendaraanNavigation.IdKendaraan)
+                @Html.DisplayFor(modelItem => item.IdKendaraanNavigation.NamaKendaraan)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdPeminjaman"><i class="fa fa-marker fa-lg"></i></a> |
