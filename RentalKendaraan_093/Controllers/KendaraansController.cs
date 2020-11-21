@@ -40,6 +40,12 @@ namespace RentalKendaraan_093.Controllers
                 menu = menu.Where(x => x.Ketersediaan == ktsd);
             }
 
+            //untuk search data
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                menu = menu.Where(s => s.NoPolisi.Contains(searchString) || s.NamaKendaraan.Contains(searchString) || s.NoStnk.Contains(searchString));
+            }
+
             return View(await menu.ToListAsync());
             //var rentKendaraanContext = _context.Kendaraan.Include(k => k.IdJenisKendaraanNavigation);
             //return View(await rentKendaraanContext.ToListAsync());
