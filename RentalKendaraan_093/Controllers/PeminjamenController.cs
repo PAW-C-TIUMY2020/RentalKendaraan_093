@@ -47,6 +47,26 @@ namespace RentalKendaraan_093.Controllers
                 menu = menu.Where(s => s.Biaya.ToString().Contains(searchString) || s.IdCustomerNavigation.NamaCustomer.Contains(searchString) || s.IdJaminanNavigation.NamaJaminan.Contains(searchString) || s.IdKendaraanNavigation.NamaKendaraan.Contains(searchString));
             }
 
+            //untuk sorting
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    menu = menu.OrderByDescending(s => s.IdCustomerNavigation.NamaCustomer);
+                    break;
+                case "Date":
+                    menu = menu.OrderBy(s => s.TglPeminjaman);
+                    break;
+                case "date_desc":
+                    menu = menu.OrderByDescending(s => s.TglPeminjaman);
+                    break;
+                default: //name ascending
+                    menu = menu.OrderBy(s => s.IdCustomerNavigation.NamaCustomer);
+                    break;
+            }
+
             //membuat pagedList
             ViewData["CurrentSort"] = sortOrder;
 
@@ -69,8 +89,8 @@ namespace RentalKendaraan_093.Controllers
             //return View(await rentKendaraanContext.ToListAsync());
         }
 
-        // GET: Peminjamen/Details/5
-        public async Task<IActionResult> Details(int? id)
+    // GET: Peminjamen/Details/5
+    public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
