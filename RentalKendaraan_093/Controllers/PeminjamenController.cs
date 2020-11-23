@@ -25,7 +25,7 @@ namespace RentalKendaraan_093.Controllers
             var ktsdList = new List<string>();
 
             //query mengambil data
-            var ktsQuery = from d in _context.Peminjaman orderby d.IdKendaraanNavigation.NamaKendaraan select d.IdKendaraanNavigation.NamaKendaraan;
+            var ktsQuery = from d in _context.Peminjaman orderby d.IdJaminanNavigation.NamaJaminan.ToString() select d.IdJaminanNavigation.NamaJaminan;
 
             ktsdList.AddRange(ktsQuery.Distinct());
 
@@ -33,12 +33,12 @@ namespace RentalKendaraan_093.Controllers
             ViewBag.ktsd = new SelectList(ktsdList);
 
             //panggil db context
-            var menu = from m in _context.Peminjaman.Include(p => p.IdCustomerNavigation).Include(p => p.IdJaminanNavigation).Include(p => p.IdKendaraanNavigation) select m;
+            var menu = from m in _context.Peminjaman.Include(p => p.IdJaminanNavigation).Include(p => p.IdJaminanNavigation).Include(p => p.IdKendaraanNavigation) select m;
 
             //untuk memilih dropdownlist ketersediaan
             if (!string.IsNullOrEmpty(ktsd))
             {
-                menu = menu.Where(x => x.IdKendaraanNavigation.NamaKendaraan == ktsd);
+                menu = menu.Where(x => x.IdJaminanNavigation.NamaJaminan.ToString() == ktsd);
             }
 
             //untuk search data
