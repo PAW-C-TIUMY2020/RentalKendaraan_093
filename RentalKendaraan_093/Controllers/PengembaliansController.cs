@@ -32,7 +32,7 @@ namespace RentalKendaraan_093.Controllers
             ViewBag.ktsd = new SelectList(ktsdList);
 
             //panggil db context
-            var menu = from m in _context.Pengembalian select m;
+            var menu = from m in _context.Pengembalian.Include(p => p.IdKondisiNavigation).Include(p => p.IdPeminjamanNavigation) select m;
 
             //untuk memilih dropdownlist ketersediaan
             if (!string.IsNullOrEmpty(ktsd))
