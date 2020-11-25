@@ -24,7 +24,7 @@ namespace RentalKendaraan_093.Controllers
             //buat list menyimpan ketersediaan
             var ktsdList = new List<string>();
             //Query mengambil data
-            var ktsdQuery = from d in _context.Customer orderby d.IdGender.ToString() select d.IdGender.ToString();
+            var ktsdQuery = from d in _context.Customer orderby d.NamaCustomer select d.NamaCustomer;
 
             ktsdList.AddRange(ktsdQuery.Distinct());
 
@@ -37,7 +37,7 @@ namespace RentalKendaraan_093.Controllers
             //untuk memilih dropdownlist ketersediaan
             if (!string.IsNullOrEmpty(ktsd))
             {
-                menu = menu.Where(x => x.IdGender.ToString() == ktsd);
+                menu = menu.Where(x => x.NamaCustomer == ktsd);
             }
 
             //untuk search data
