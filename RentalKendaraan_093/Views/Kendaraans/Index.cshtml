@@ -66,7 +66,7 @@
                     @Html.DisplayFor(modelItem => item.Ketersediaan)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdJenisKendaraanNavigation.IdJenisKendaraan)
+                    @Html.DisplayFor(modelItem => item.IdJenisKendaraanNavigation.NamaJenisKendaraan)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.IdKendaraan">Edit</a> |
@@ -80,7 +80,7 @@
 
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "enabled" : "";
 }
 
 <a asp-action="Index"
